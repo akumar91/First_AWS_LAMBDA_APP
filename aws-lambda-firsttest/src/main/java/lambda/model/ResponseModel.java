@@ -1,15 +1,24 @@
 package lambda.model;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+
+@DynamoDBTable(tableName="Widget")
 public class ResponseModel {
 
     String name;
-    String test;
+    double price;
 
-    public ResponseModel(String name, String test) {
-        this.test = test;
+    public ResponseModel(String name, double price) {
+        this.price = price;
         this.name = name;
     }
 
+    public ResponseModel() {
+
+    }
+
+    @DynamoDBHashKey(attributeName="name")
     public String getName() {
         return name;
     }
@@ -18,11 +27,13 @@ public class ResponseModel {
         this.name = name;
     }
 
-    public String getTest() {
-        return test;
+    @DynamoDBHashKey(attributeName="price")
+    public double getPrice() {
+        return price;
     }
 
-    public void setTest(String test) {
-        this.test = test;
+    public void setPrice(double price) {
+        this.price = price;
     }
+
 }
